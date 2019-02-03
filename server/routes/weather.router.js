@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
   console.log('query: ', query);
   axios.get(query)
     .then(response => {
-      console.log(response.data.list);
-      res.send(response.data.list)
+      console.log(response.data);
+      res.send(response.data)
     })
     .catch(error => {
       console.log(`Error getting weather ${error}`);
