@@ -4,8 +4,8 @@ class WeatherItem extends Component {
   render() {
     return (
       <div style={divStyle}>
-        <p style={{  marginLeft: '20px', marginRight: '20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}>
-          <span style={{ whiteSpace: 'nowrap', fontWeight: '700' }}>{this.props.date || 'Today'}</span> <br />
+        <p style={{  paddingLeft: '20px', marginRight: '20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}>
+          <span style={{ whiteSpace: 'nowrap', fontWeight: '700' }}>{this.props.date || 'Current'}</span> <br />
           <span style={{ textTransform: 'capitalize', fontStyle: 'italic' }}>{this.props.description}</span>
         </p>
         <p style={pStyle}>High: {this.props.maxTemp}</p>
@@ -23,6 +23,7 @@ const pStyle = {
 }
 
 const divStyle = {
-  display: 'flex'
+  display: 'flex',
+  borderBottom: '2px solid #eaedf2'
 }
 export default WeatherItem;
