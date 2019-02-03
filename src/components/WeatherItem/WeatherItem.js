@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import './WeatherItem.css';
 
 class WeatherItem extends Component {
   render() {
     return (
-      <div style={divStyle}>
-        <p style={{  paddingLeft: '20px', marginRight: '20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}>
+      <div className={this.props.classList}>
+        <p style={{ paddingLeft: '20px', marginRight: '20px', fontSize: '.9rem', whiteSpace: 'nowrap', height: '40px' }}>
+          {/* Show 'Current' text if date is not available */}
           <span style={{ whiteSpace: 'nowrap', fontWeight: '700' }}>{this.props.date || 'Current'}</span> <br />
           <span style={{ textTransform: 'capitalize', fontStyle: 'italic' }}>{this.props.description}</span>
         </p>
@@ -19,11 +21,8 @@ const pStyle = {
   marginRight: '40px',
   marginTop: '10px',
   fontWeight: '700',
-  fontSize: '1.3rem'
+  fontSize: '1.3rem',
+  whiteSpace: 'nowrap'
 }
 
-const divStyle = {
-  display: 'flex',
-  borderBottom: '2px solid #eaedf2'
-}
 export default WeatherItem;

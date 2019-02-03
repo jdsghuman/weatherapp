@@ -1,0 +1,8 @@
+.weather-item__container {
+  display: flex;
+  height: 60px;
+}
+
+.container__border {
+  border-bottom: 2px solid #eaedf2;
+}

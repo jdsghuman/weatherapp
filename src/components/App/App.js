@@ -24,6 +24,8 @@ const Wrapper = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default App;
