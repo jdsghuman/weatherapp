@@ -4,7 +4,7 @@ class WeatherItem extends Component {
   render() {
     return (
       <div style={divStyle}>
-        <p style={{ marginRight: '20px', fontSize: '.9rem' }}>
+        <p style={{  marginLeft: '20px', marginRight: '20px', fontSize: '.9rem', whiteSpace: 'nowrap' }}>
           <span style={{ whiteSpace: 'nowrap', fontWeight: '700' }}>{this.props.date || 'Today'}</span> <br />
           <span style={{ textTransform: 'capitalize', fontStyle: 'italic' }}>{this.props.description}</span>
         </p>

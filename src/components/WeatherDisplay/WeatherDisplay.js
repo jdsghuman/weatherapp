@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import WeatherItem from '../WeatherItem/WeatherItem';
+import './WeatherDisplay.css';
 
 class WeatherDisplay extends Component {
 
@@ -29,17 +30,17 @@ class WeatherDisplay extends Component {
     console.log('city list: ', this.props.cityList)
     return (
       <ul style={{ paddingLeft: '0' }}>
-        {this.props.cityList.map(ci => {
+        {this.props.cityList.reverse().map(ci => {
           return (
-            <div style={{ display: 'flex', background: '#ffffff', width: '100%', marginBottom: '30px' }}>
-              <div style={{ width: '40%', paddingLeft: '20px' }} key={ci.city.id}>
-                <h3 style={{ fontWeight: '600', fontSize: '2rem', margin: '7px', marginLeft: '0' }} key={ci.city.id}>{ci.city.name}</h3>
+            <div key={ci.city.id} className="city__container">
+              <div style={{ width: '40%', paddingLeft: '20px' }}>
+                <h3 className="city__title">{ci.city.name}</h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {ci.list.map(temp => {
                     return (
-                      // console.log('temp ---- ', temp)
                       <WeatherItem
+                        key={temp.dt}
                         date={this.getDateReturned(temp.dt_txt)}
                         description={temp.weather[0].description}
                         maxTemp={this.getRoundedNumber(temp.main.temp_max)}
@@ -50,7 +51,7 @@ class WeatherDisplay extends Component {
                   }
                 </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '100%' }}>
+              <div className="item__container">
                 <WeatherItem
                   description={ci.list[0].weather[0].description}
                   maxTemp={this.getRoundedNumber(ci.list[0].main.temp_max)}
