@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import WeatherItem from '../WeatherItem/WeatherItem';
 
 class WeatherDisplay extends Component {
 
   getDateReturned = (newDate) => {
     let dt = new Date(newDate);
-    var months = ["January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"];
-    return `${months[dt.getMonth()]} ${dt.getDate()}`;
+    let months = ["Jan", "Feb", "Mar",
+      "Apr", "May", "Jun", "Jul",
+      "Aug", "Sept", "Oct",
+      "Nov", "Dec"];
+    let hours = dt.getHours();
+    let minutes = dt.getMinutes();
+    let ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; 
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let strTime = hours + ':' + minutes + ' ' + ampm;
+    return `${months[dt.getMonth()]} ${dt.getDate()} ${strTime}`;
   }
 
   getRoundedNumber = (num) => {
@@ -23,23 +31,31 @@ class WeatherDisplay extends Component {
       <ul style={{ paddingLeft: '0' }}>
         {this.props.cityList.map(ci => {
           return (
-            <div style={{display: 'flex', background: '#ffffff', width: '100%' }}>
-              <div style={{width: '40%'}} key={ci.city.id}>
-              <h3 style={{ fontWeight: '600', fontSize: '2rem', margin: '7px' }} key={ci.city.id}>{ci.city.name}</h3>
+            <div style={{ display: 'flex', background: '#ffffff', width: '100%', marginBottom: '30px' }}>
+              <div style={{ width: '40%', paddingLeft: '20px' }} key={ci.city.id}>
+                <h3 style={{ fontWeight: '600', fontSize: '2rem', margin: '7px', marginLeft: '0' }} key={ci.city.id}>{ci.city.name}</h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {ci.list.map(temp => {
                     return (
-                      <p>temp</p>
+                      // console.log('temp ---- ', temp)
+                      <WeatherItem
+                        date={this.getDateReturned(temp.dt_txt)}
+                        description={temp.weather[0].description}
+                        maxTemp={this.getRoundedNumber(temp.main.temp_max)}
+                        minTemp={this.getRoundedNumber(temp.main.temp_min)}
+                      />
                     )
                   })
                   }
                 </div>
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '100%'}}>
-                <p style={{textTransform: 'capitalize', marginRight: '40px', fontSize: '.9rem'}}><span style={{fontWeight: '700'}}>Today</span> <br/><span style={{fontStyle: 'italic'}}>{ci.list[0].weather[0].description}</span></p>
-                <p style={pStyle}>High: {this.getRoundedNumber(ci.list[0].main.temp_max)}</p>
-                <p style={pStyle}>Low: {this.getRoundedNumber(ci.list[0].main.temp_min)}</p>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '100%' }}>
+                <WeatherItem
+                  description={ci.list[0].weather[0].description}
+                  maxTemp={this.getRoundedNumber(ci.list[0].main.temp_max)}
+                  minTemp={this.getRoundedNumber(ci.list[0].main.temp_min)}
+                />
               </div>
             </div>
           )
@@ -53,11 +69,5 @@ class WeatherDisplay extends Component {
 const mapStateToProps = store => ({
   cityList: store.weather
 });
-
-const pStyle = {
-  marginRight: '40px',
-  fontWeight: '700',
-  fontSize: '1.3rem'
-}
 
 export default connect(mapStateToProps)(WeatherDisplay);
