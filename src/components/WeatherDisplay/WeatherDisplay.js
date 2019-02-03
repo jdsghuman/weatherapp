@@ -18,7 +18,8 @@ class WeatherDisplay extends Component {
     hours = hours % 12;
     hours = hours ? hours : 12;
     let strTime = `${hours}${ampm}`;
-    return `${months[dt.getMonth()]} ${dt.getDate()} ${strTime}`;
+    let monthNum = dt.getMonth();
+    return `${months[monthNum]} ${dt.getDate()} ${strTime}`;
   }
 
   // Round weather to integer
@@ -28,7 +29,6 @@ class WeatherDisplay extends Component {
   }
 
   render() {
-    console.log('city list: ', this.props.cityList)
     return (
       <ul style={{ paddingLeft: '0' }}>
         {/* Display searched cities */}
