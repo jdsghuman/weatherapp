@@ -17,7 +17,7 @@ class WeatherDisplay extends Component {
     hours = hours % 12;
     hours = hours ? hours : 12; 
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    let strTime = hours + ':' + minutes + ' ' + ampm;
+    let strTime = hours + ' ' + ampm;
     return `${months[dt.getMonth()]} ${dt.getDate()} ${strTime}`;
   }
 
@@ -33,7 +33,7 @@ class WeatherDisplay extends Component {
         {this.props.cityList.reverse().map(ci => {
           return (
             <div key={ci.city.id} className="city__container">
-              <div style={{ width: '40%', paddingLeft: '20px' }}>
+              <div>
                 <h3 className="city__title">{ci.city.name}</h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
