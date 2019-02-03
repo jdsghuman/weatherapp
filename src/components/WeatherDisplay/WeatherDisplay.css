@@ -1,0 +1,29 @@
+.city__container {
+  display: flex; 
+  background: #ffffff; 
+  width: 100%; 
+  margin-bottom: 30px;
+}
+
+.item__container {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-end; 
+  width: 100%;
+}
+
+.city__title {
+  font-weight: 600; 
+  font-size: 2rem; 
+  margin: 7px; 
+  margin-left: 0;
+}
+
+@media only screen and (max-width: 750px) {
+  .city__container {
+    flex-direction: column;
+  }
+  .item__container {
+    justify-content: flex-start;
+  }
+}

@@ -7,6 +7,12 @@ class Form extends Component {
     searchString: ''
   }
 
+  clearInput = () => {
+    this.setState({
+      searchString: ''
+    })
+  }
+  
   handleChange = (event) => {
     this.setState({
       searchString: event.target.value
@@ -16,11 +22,12 @@ class Form extends Component {
   handleClick = () => {
     console.log('clicked');
     this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.searchString });
+    this.clearInput();
   }
   render() {
     return (
       <>
-        <Input onChange={this.handleChange} type="text" name="city" placeholder="Enter city" />
+        <Input onChange={this.handleChange} value={this.state.searchString} type="text" name="city" placeholder="Enter city" />
         <Button onClick={this.handleClick}>Add City</Button>
       </>
     )
