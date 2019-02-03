@@ -26,7 +26,7 @@ class Form extends Component {
   }
 
   handleClick = () => {
-    console.log('clicked');
+    this.validateInputField();
     this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.locality });
     this.clearInput();
   }
@@ -67,6 +67,12 @@ class Form extends Component {
     }
   }
 
+  validateInputField = () => {
+    if(this.state.locality === '') {
+      alert('Please enter a city');
+    }
+  }
+
   render() {
     return (
       <>
@@ -91,6 +97,7 @@ const Input = styled.input`
   outline: none;
   border-radius: 3px;
   font-size: 1rem;
+  required=required;
 `;
 
 const Button = styled.button`

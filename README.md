@@ -21,6 +21,7 @@ Before you get started, make sure you have the following software installed on y
 
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
+
     ```
     OPEN_WEATHER_API_KEY=superDuperSecret
     ```
@@ -44,7 +45,7 @@ High level list of items completed.
 - [x] Uses React (Next.js works to for SSR) 
 - [x] Use StyledComponents library
 - [] Autocomplete and validate cities using the google places API
-- [] Supports WCAG compliance
-- [] Uses LocalStorage to persist data between page reloads
+- [x] Supports WCAG compliance
+- [ ] Uses LocalStorage to persist data between page reloads
 - [x] Use a global store like redux for extra points
 - [x] Any additional UI / UX improvements you feel necessary (Responsive design)
