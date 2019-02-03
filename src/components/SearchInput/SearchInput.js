@@ -14,7 +14,8 @@ class Form extends Component {
   clearInput = () => {
     this.setState({
       city: '',
-      query: ''
+      query: '',
+      locality: ''
     })
   }
 

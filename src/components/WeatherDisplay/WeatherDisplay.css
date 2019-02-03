@@ -14,6 +14,7 @@
 }
 
 .city__title {
+  display: inline-block;
   font-weight: 600; 
   font-size: 2rem; 
   margin: 7px; 
