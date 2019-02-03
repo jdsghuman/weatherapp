@@ -110,7 +110,7 @@ const Button = styled.button`
   display: inline-block;
   transform: translateY(-5px);
   :hover {
-    background: #64beea;
+    background: #2aaaea;
     border: none;
     color: #ffffff;
   }
