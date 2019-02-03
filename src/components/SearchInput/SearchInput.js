@@ -97,7 +97,6 @@ const Input = styled.input`
   outline: none;
   border-radius: 3px;
   font-size: 1rem;
-  required=required;
 `;
 
 const Button = styled.button`
