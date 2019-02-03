@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import WeatherItem from '../WeatherItem/WeatherItem';
 import './WeatherDisplay.css';
 import Map from '../Map/Map';
+import styled from 'styled-components';
 
 class WeatherDisplay extends Component {
 
@@ -28,6 +29,10 @@ class WeatherDisplay extends Component {
     return roundedNum;
   }
 
+  removeCity = (cityId) => {
+    this.props.dispatch({ type: 'REMOVE_CITY', payload: cityId });
+  }
+
   render() {
     return (
       <ul style={{ paddingLeft: '0' }}>
@@ -37,7 +42,7 @@ class WeatherDisplay extends Component {
             <div key={ci.city.id} className="city__container">
               <div>
                 <h3 className="city__title">{ci.city.name}</h3>
-
+                <Button onClick={() => this.removeCity(ci.city.id)}>Remove</Button> 
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {/* Forecast display */}
                   {ci.list.map(temp => {
@@ -80,7 +85,6 @@ class WeatherDisplay extends Component {
             </div>
           )
         })}
-        
       </ul>
     )
   }
@@ -90,4 +94,25 @@ const mapStateToProps = store => ({
   cityList: store.weather
 });
 
+
+const Button = styled.button`
+  background: transparent;
+  color: #333333;
+  cursor: pointer;
+  border: none;
+  padding: 5px 15px;
+  outline: none;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  font-size: .8rem;
+  letter-spacing: 1.2px;
+  margin-left: 5px;
+  display: inline-block;
+  transform: translateY(-5px);
+  :hover {
+    background: #64beea;
+    border: none;
+    color: #ffffff;
+  }
+`;
 export default connect(mapStateToProps)(WeatherDisplay);

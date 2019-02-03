@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const searchStr = req.query.q;
-  const query = `http://api.openweathermap.org/data/2.5/forecast/?q=${searchStr}&units=imperial&cnt=7&appid=${process.env.OPEN_WEATHER_API_KEY}`
+  const query = `http://api.openweathermap.org/data/2.5/forecast/?q=${searchStr}&units=imperial&cnt=7&appid=c4b68da26af6331c2ffa0d3eedb65af5`
   console.log('query: ', query);
   axios.get(query)
     .then(response => {
