@@ -38,13 +38,13 @@ Open a new tab in terminal and enter
 High level list of items completed.
 
 - [ ] On the initial page load, it should load the weather for the current location
-- [x] Should show the 7 day forecast for each city on the left, and show todays forecast in the top right. (Could not use the Yahoo Weather API, so this requirement changed)
+- [x] Should show the 7 day forecast for each city on the left, and show todays forecast in the top right. (**Could not use the Yahoo Weather API, so this requirement changed**)
 - [x] Should show a map of the city on the right
 - [x] Should be able to add a city to the list
 - [x] Should be able to remove a city from the list
 - [x] Uses React (Next.js works to for SSR) 
 - [x] Use StyledComponents library
-- [] Autocomplete and validate cities using the google places API
+- [ ] Autocomplete and validate cities using the google places API
 - [x] Supports WCAG compliance
 - [ ] Uses LocalStorage to persist data between page reloads
 - [x] Use a global store like redux for extra points
