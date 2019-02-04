@@ -44,7 +44,7 @@ High level list of items completed.
 - [x] Should be able to remove a city from the list
 - [x] Uses React (Next.js works to for SSR) 
 - [x] Use StyledComponents library
-- [ ] Autocomplete and validate cities using the google places API
+- [x] Autocomplete and validate cities using the google places API
 - [x] Supports WCAG compliance
 - [ ] Uses LocalStorage to persist data between page reloads
 - [x] Use a global store like redux for extra points
