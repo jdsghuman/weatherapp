@@ -2,7 +2,7 @@
 
 Weather App that allows you to add and remove cities to a list and view the weather. 
 
-Production URL:
+Production URL: https://nameless-journey-26394.herokuapp.com/
 
 ## Built With
 - React 
