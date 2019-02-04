@@ -27,6 +27,9 @@ class Form extends Component {
 
   handleClick = () => {
     this.validateInputField();
+    if(this.state.locality === '') {
+      return;
+    }
     this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.locality });
     this.clearInput();
   }
@@ -70,16 +73,17 @@ class Form extends Component {
   validateInputField = () => {
     if(this.state.locality === '') {
       alert('Please enter a city');
+      return false;
     }
   }
 
   render() {
     return (
       <>
-        {/* <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms&libraries=places"
+        <Script
+          url={this.props.ga}
           onLoad={this.handleScriptLoad}
-        /> */}
+        />
         <Input id="autocomplete" onChange={this.handleChange} value={this.state.locality} type="text" name="city" placeholder="Enter city" />
         <Button onClick={this.handleClick}>Add City</Button>
       </>

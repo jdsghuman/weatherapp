@@ -77,6 +77,7 @@ class WeatherDisplay extends Component {
                 />
                 <div className="map__container">
                   <Map 
+                    ga={this.props.ga}
                     lat={ci.city.coord.lat}
                     lon={ci.city.coord.lon}
                   />
