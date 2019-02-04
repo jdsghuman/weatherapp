@@ -7,13 +7,13 @@ import WeatherDisplay from '../WeatherDisplay/WeatherDisplay';
 
 
 class App extends Component {
-
+  ga = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms&libraries=places'
   render() {
     return (
       <div className="App">
         <Wrapper>
-          <SearchInput />
-          <WeatherDisplay />
+          <SearchInput ga={this.ga} />
+          <WeatherDisplay ga={this.ga} />
         </Wrapper>
       </div>
     );
