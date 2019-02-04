@@ -37,9 +37,9 @@ class WeatherDisplay extends Component {
     return (
       <ul style={{ paddingLeft: '0' }}>
         {/* Display searched cities */}
-        {this.props.cityList.reverse().map(ci => {
+        {this.props.cityList.map((ci, i) => {
           return (
-            <div key={ci.city.id} className="city__container">
+            <div key={i} className="city__container">
               <div>
                 <h3 className="city__title">{ci.city.name}</h3>
                 <Button onClick={() => this.removeCity(ci.city.id)}>Remove</Button> 
@@ -77,7 +77,6 @@ class WeatherDisplay extends Component {
                 />
                 <div className="map__container">
                   <Map 
-                    ga={this.props.ga}
                     lat={ci.city.coord.lat}
                     lon={ci.city.coord.lon}
                   />

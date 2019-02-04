@@ -25,11 +25,13 @@ class Form extends Component {
     })
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault(e);
     this.validateInputField();
-    if(this.state.locality === '') {
+    if (this.state.locality === '') {
       return;
     }
+
     this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.locality });
     this.clearInput();
   }
@@ -71,7 +73,7 @@ class Form extends Component {
   }
 
   validateInputField = () => {
-    if(this.state.locality === '') {
+    if (this.state.locality === '') {
       alert('Please enter a city');
       return false;
     }
@@ -81,7 +83,7 @@ class Form extends Component {
     return (
       <>
         <Script
-          url={this.props.ga}
+          url='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms&libraries=places'
           onLoad={this.handleScriptLoad}
         />
         <Input id="autocomplete" onChange={this.handleChange} value={this.state.locality} type="text" name="city" placeholder="Enter city" />
@@ -120,4 +122,7 @@ const Button = styled.button`
   }
 `;
 
-export default connect()(Form);
+const mapStateToProps = store => ({
+  cityList: store.weather
+})
+export default connect(mapStateToProps)(Form);
