@@ -8,7 +8,8 @@ class Form extends Component {
   state = {
     city: '',
     query: '',
-    locality: ''
+    locality: '',
+    list: []
   }
 
   clearInput = () => {
@@ -33,6 +34,17 @@ class Form extends Component {
     }
 
     this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.locality });
+    
+    const list = [...this.state.list];
+    list.push(this.state.locality);
+
+    this.setState({
+      list
+    })
+
+    // Update localStorage
+    localStorage.setItem("city", JSON.stringify(this.state.list));
+    alert('New city added!');
     this.clearInput();
   }
 
