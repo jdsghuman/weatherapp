@@ -4,12 +4,15 @@ import WeatherItem from '../WeatherItem/WeatherItem';
 import './WeatherDisplay.css';
 import Map from '../Map/Map';
 import styled from 'styled-components';
+import moment from 'moment';
+
 
 class WeatherDisplay extends Component {
 
   // Format date display
   getDateReturned = (newDate) => {
     let dt = new Date(newDate);
+    // let dt = parseInt(dta);
     let months = ["Jan", "Feb", "Mar",
       "Apr", "May", "Jun", "Jul",
       "Aug", "Sept", "Oct",
@@ -19,8 +22,9 @@ class WeatherDisplay extends Component {
     hours = hours % 12;
     hours = hours ? hours : 12;
     let strTime = `${hours}${ampm}`;
-    let monthNum = dt.getMonth();
-    return `${months[monthNum]} ${dt.getDate()} ${strTime}`;
+    let monthNum = moment(dt).format('M');
+    console.log('dt', moment(dt).format('MM'))
+    return `${months[monthNum]} ${moment(dt).format('Do')} ${strTime}`;
   }
 
   // Round weather to integer
