@@ -9,12 +9,6 @@ import moment from 'moment';
 
 class WeatherDisplay extends Component {
 
-  // Format date display
-  getDateReturned = (newDate) => {
-    let dt = new Date(newDate);
-    return `${moment(dt).format('MMM')} ${moment(dt).format('Do')} ${moment(dt).format('h a')}`;
-  }
-
   // Round weather to integer
   getRoundedNumber = (num) => {
     let roundedNum = Math.round(num);
@@ -43,7 +37,7 @@ class WeatherDisplay extends Component {
                         classList="weather-item__container container__border"
                         key={temp.dt}
                         // Display date
-                        date={this.getDateReturned(temp.dt_txt)}
+                        date={moment(temp.dt_txt).format('MMM Do h a')}
                         // Display Description
                         description={temp.weather[0].description}
                         // Display Max Temp
