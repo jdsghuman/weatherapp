@@ -18,10 +18,10 @@ class WeatherItem extends Component {
 }
 
 const pStyle = {
-  marginRight: '40px',
+  marginRight: '25px',
   marginTop: '10px',
   fontWeight: '700',
-  fontSize: '1.3rem',
+  fontSize: '1.2rem',
   whiteSpace: 'nowrap'
 }
 

@@ -12,19 +12,7 @@ class WeatherDisplay extends Component {
   // Format date display
   getDateReturned = (newDate) => {
     let dt = new Date(newDate);
-    // let dt = parseInt(dta);
-    let months = ["Jan", "Feb", "Mar",
-      "Apr", "May", "Jun", "Jul",
-      "Aug", "Sept", "Oct",
-      "Nov", "Dec"];
-    let hours = dt.getHours();
-    let ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    let strTime = `${hours}${ampm}`;
-    let monthNum = moment(dt).format('M');
-    console.log('dt', moment(dt).format('MM'))
-    return `${months[monthNum]} ${moment(dt).format('Do')} ${strTime}`;
+    return `${moment(dt).format('MMM')} ${moment(dt).format('Do')} ${moment(dt).format('h a')}`;
   }
 
   // Round weather to integer
