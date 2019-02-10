@@ -9,10 +9,6 @@ import moment from 'moment';
 
 class WeatherDisplay extends Component {
 
-  componentDidUpdate() {
-    this.props.dispatch({ type: 'GET_WEATHER' });
-  }
-
   // Round weather to integer
   getRoundedNumber = (num) => {
     let roundedNum = Math.round(num);
