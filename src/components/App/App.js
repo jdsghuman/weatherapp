@@ -7,7 +7,6 @@ import WeatherDisplay from '../WeatherDisplay/WeatherDisplay';
 
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
+import {withGoogleMap, GoogleMap } from "react-google-maps"
 
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+const MyMapComponent = withGoogleMap((props) =>
   <GoogleMap
     // Set Zoom of map
     defaultZoom={12}
@@ -10,7 +10,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     defaultCenter={{ lat: props.lat, lng: props.lon }}
   >
   </GoogleMap>
-))
+)
 
 class Map extends Component {
   render() {
@@ -18,7 +18,7 @@ class Map extends Component {
       <MyMapComponent
         lat={this.props.lat}
         lon={this.props.lon}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms"
+        googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms'
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `400px` }} />}
         mapElement={<div style={{ height: `100%` }} />}

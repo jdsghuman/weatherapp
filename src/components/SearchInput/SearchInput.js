@@ -2,32 +2,103 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import Script from 'react-load-script';
+
 class Form extends Component {
   state = {
-    searchString: ''
+    city: '',
+    query: '',
+    locality: '',
+    list: []
   }
 
   clearInput = () => {
     this.setState({
-      searchString: ''
-    })
-  }
-  
-  handleChange = (event) => {
-    this.setState({
-      searchString: event.target.value
+      city: '',
+      query: '',
+      locality: ''
     })
   }
 
-  handleClick = () => {
-    console.log('clicked');
-    this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.searchString });
+  handleChange = (event) => {
+    this.setState({
+      locality: event.target.value
+    })
+  }
+
+  handleClick = (e) => {
+    e.preventDefault(e);
+    this.validateInputField();
+    if (this.state.locality === '') {
+      return;
+    }
+
+    this.props.dispatch({ type: 'FETCH_WEATHER', payload: this.state.locality });
+    
+    const list = [...this.state.list];
+    list.push(this.state.locality);
+
+    this.setState({
+      list
+    })
+
+    // Update localStorage
+    localStorage.setItem("city", JSON.stringify(this.state.list));
+    alert('New city added!');
     this.clearInput();
   }
+
+  handleScriptLoad = e => {
+    // Declare Options For Autocomplete
+    var options = {
+      types: ['(cities)'],
+    };
+
+    // Initialize Google Autocomplete
+    /*global google*/ // To disable any eslint 'google not defined' errors
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      options,
+    );
+
+    // Fire Event when a suggested name is selected
+    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+  }
+
+  handlePlaceSelect = e => {
+
+    // Extract City From Address Object
+    let addressObject = this.autocomplete.getPlace();
+    let address = addressObject.address_components;
+
+    document.getElementById('autocomplete').value = addressObject.formatted_address;
+    // Check if address is valid
+    if (address) {
+      // Set State
+      this.setState(
+        {
+          locality: addressObject.formatted_address,
+          city: address[0].long_name
+        }
+      );
+    }
+  }
+
+  validateInputField = () => {
+    if (this.state.locality === '') {
+      alert('Please enter a city');
+      return false;
+    }
+  }
+
   render() {
     return (
       <>
-        <Input onChange={this.handleChange} value={this.state.searchString} type="text" name="city" placeholder="Enter city" />
+        <Script
+          url='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCYqcIHpBnvZKTUX6K-mT7DY-nze22Dcms&libraries=places'
+          onLoad={this.handleScriptLoad}
+        />
+        <Input id="autocomplete" onChange={this.handleChange} value={this.state.locality} type="text" name="city" placeholder="Enter city" />
         <Button onClick={this.handleClick}>Add City</Button>
       </>
     )
@@ -43,6 +114,7 @@ const Input = styled.input`
   padding: 5px;
   outline: none;
   border-radius: 3px;
+  font-size: 1rem;
 `;
 
 const Button = styled.button`
@@ -50,14 +122,19 @@ const Button = styled.button`
   color: #ffffff;
   cursor: pointer;
   border: none;
-  padding: 7px 18px;
+  padding: 6px 18px;
   outline: none;
   border-radius: 3px;
-  font-size: .8rem;
+  font-size: 1rem;
   letter-spacing: 1.2px;
   :hover {
-    background: #64beea;
+    background: transparent;
+    border: 1px solid #333333;
+    color: #333333;
   }
 `;
 
-export default connect()(Form);
+const mapStateToProps = store => ({
+  cityList: store.weather
+})
+export default connect(mapStateToProps)(Form);
