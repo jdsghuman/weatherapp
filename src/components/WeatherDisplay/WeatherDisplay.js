@@ -63,6 +63,7 @@ class WeatherDisplay extends Component {
                 />
                 <div className="map__container">
                   <Map 
+                    key={ci.city.id}
                     lat={ci.city.coord.lat}
                     lon={ci.city.coord.lon}
                   />
