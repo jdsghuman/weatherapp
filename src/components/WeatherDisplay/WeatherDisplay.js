@@ -9,6 +9,10 @@ import moment from 'moment';
 
 class WeatherDisplay extends Component {
 
+  componentDidUpdate() {
+    this.props.dispatch({ type: 'GET_WEATHER' });
+  }
+
   // Round weather to integer
   getRoundedNumber = (num) => {
     let roundedNum = Math.round(num);
@@ -63,6 +67,7 @@ class WeatherDisplay extends Component {
                 />
                 <div className="map__container">
                   <Map 
+                    key={ci.city.id}
                     lat={ci.city.coord.lat}
                     lon={ci.city.coord.lon}
                   />
